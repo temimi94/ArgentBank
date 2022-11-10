@@ -1,39 +1,27 @@
 import React from "react";
-import { 
-	HashRouter,
-	Routes,
-	Route,
-	Navigate
-} from "react-router-dom";
-
-import { useSelector } from "react-redux";
-
-//import components
-import Home from "./pages/Home/Home"
-import Profil from "./pages/Profil/Profil"
-import Login from "./pages/Login/Login"
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer"
-
+import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/signup/Signup";
+import Profil from "./pages/Profil/Profil";
+import Transaction from "./pages/transaction/Transaction";
 
 const App = () => {
-
-	const auth = useSelector(state => state.login.token);
-
-	return (
-		<>
-			<HashRouter>
-				<Header />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={auth ? <Navigate to="/profile"/> : <Login />} />
-					<Route path="/profile" element={(!auth) ? <Navigate to="/login"/> : <Profil />} />
-					<Route path="*" element={<Navigate replace to="/" />} />
-				</Routes>
-				<Footer />
-			</HashRouter>
-		</>
-	);
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="profil" element={<Profil />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="transaction" element={<Transaction />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 };
 
 export default App;
