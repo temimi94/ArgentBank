@@ -62,26 +62,29 @@ function Profile() {
     setFirstName(e.target.value);
   };
 
-  function EditName(res) {
-    axios
-      .put(URL, res, {
+  async function EditName(res) {
+    console.log("res", res);
+
+    const response = await axios.put(
+      URL,
+      { firstName: firstName, lastName: lastName },
+      {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+      }
+    );
+
+    dispatch(
+      changeProfil({
+        ...data,
+        firstName: firstName,
+        lastName: lastName,
       })
-      .then(function(res) {
-        dispatch(
-          changeProfil({
-            ...data,
-            firstName: firstName,
-            lastName: lastName,
-          })
-        );
-      })
-      .catch(console.log);
-    console.log("new", firstName, "ancien", first);
+    );
+    console.log(firstName, first);
+    window.location.reload();
   }
-  
 
   return (
     <>
