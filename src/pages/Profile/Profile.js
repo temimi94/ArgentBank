@@ -41,7 +41,6 @@ function Profile() {
     GetProfil();
   }, []);
 
-  console.log(user);
   const first = user.firstName;
   const last = user.lastName;
 
@@ -50,7 +49,7 @@ function Profile() {
     window.location = "/";
   };
 
-  //modifier un champs
+  //Edit name
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [isClicked, setIsClicked] = React.useState(false);
@@ -63,25 +62,26 @@ function Profile() {
     setFirstName(e.target.value);
   };
 
-  function EditName(response) {
-       axios
-        .put(URL, response, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then(function(res) {
-          dispatch(
-            changeProfil({
-              ...data,
-              firstName: firstName,
-              lastName: last,
-            })
-          );
-        })
-        .catch(console.log);
-        console.log(user.firstName);
+  function EditName(res) {
+    axios
+      .put(URL, res, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(function(res) {
+        dispatch(
+          changeProfil({
+            ...data,
+            firstName: firstName,
+            lastName: lastName,
+          })
+        );
+      })
+      .catch(console.log);
+    console.log("new", firstName, "ancien", first);
   }
+  
 
   return (
     <>
@@ -121,14 +121,14 @@ function Profile() {
                 <input
                   onChange={handleChangeFirst}
                   type="text"
-                  value={user.firstName}
+                  value={firstName}
                   placeholder={first}
                 />
 
                 <input
                   onChange={(e) => setLastName(e.target.value)}
                   type="text"
-                  value={user.lastName}
+                  value={lastName}
                   placeholder={last}
                 />
               </div>
