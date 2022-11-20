@@ -7,4 +7,7 @@ export  const store = configureStore({
   },
 });
 
-// Créer un store : configureStore crée une redux data
+store.subscribe(() => {
+  console.log("Nouveau state:");
+  console.log(store.getState());
+});

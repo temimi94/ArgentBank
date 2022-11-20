@@ -2,12 +2,14 @@ import React from "react";
 import iconChat from "../../img/icon-chat.png";
 import iconMoney from "../../img/icon-money.png";
 import iconSecurity from "../../img/icon-security.png";
+import Header from "../../components/Header/Header";
 import "./home.css";
 
 export default function Home() {
   return (
     <div>
       <main>
+        <Header />
         <div className="hero">
           <section className="hero-content">
             <h2 className="sr-only">Promoted Content</h2>
