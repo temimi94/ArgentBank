@@ -63,8 +63,6 @@ function Profile() {
   };
 
   async function EditName(res) {
-    console.log("res", res);
-
     const response = await axios.put(
       URL,
       { firstName: firstName, lastName: lastName },
